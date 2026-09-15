@@ -110,7 +110,7 @@ class Chronicle:
         self._sdk: typing.Optional[SdkClient] = None
 
     @property
-    def events(self):
+    def events(self) -> EventsClient:
         if self._events is None:
             from .events.client import EventsClient  # noqa: E402
 
@@ -118,7 +118,7 @@ class Chronicle:
         return self._events
 
     @property
-    def timeline(self):
+    def timeline(self) -> TimelineClient:
         if self._timeline is None:
             from .timeline.client import TimelineClient  # noqa: E402
 
@@ -126,7 +126,7 @@ class Chronicle:
         return self._timeline
 
     @property
-    def search(self):
+    def search(self) -> SearchClient:
         if self._search is None:
             from .search.client import SearchClient  # noqa: E402
 
@@ -134,7 +134,7 @@ class Chronicle:
         return self._search
 
     @property
-    def discover(self):
+    def discover(self) -> DiscoverClient:
         if self._discover is None:
             from .discover.client import DiscoverClient  # noqa: E402
 
@@ -142,7 +142,7 @@ class Chronicle:
         return self._discover
 
     @property
-    def links(self):
+    def links(self) -> LinksClient:
         if self._links is None:
             from .links.client import LinksClient  # noqa: E402
 
@@ -150,7 +150,7 @@ class Chronicle:
         return self._links
 
     @property
-    def sdk(self):
+    def sdk(self) -> SdkClient:
         if self._sdk is None:
             from .sdk.client import SdkClient  # noqa: E402
 
@@ -271,7 +271,7 @@ class AsyncChronicle:
         self._sdk: typing.Optional[AsyncSdkClient] = None
 
     @property
-    def events(self):
+    def events(self) -> AsyncEventsClient:
         if self._events is None:
             from .events.client import AsyncEventsClient  # noqa: E402
 
@@ -279,7 +279,7 @@ class AsyncChronicle:
         return self._events
 
     @property
-    def timeline(self):
+    def timeline(self) -> AsyncTimelineClient:
         if self._timeline is None:
             from .timeline.client import AsyncTimelineClient  # noqa: E402
 
@@ -287,7 +287,7 @@ class AsyncChronicle:
         return self._timeline
 
     @property
-    def search(self):
+    def search(self) -> AsyncSearchClient:
         if self._search is None:
             from .search.client import AsyncSearchClient  # noqa: E402
 
@@ -295,7 +295,7 @@ class AsyncChronicle:
         return self._search
 
     @property
-    def discover(self):
+    def discover(self) -> AsyncDiscoverClient:
         if self._discover is None:
             from .discover.client import AsyncDiscoverClient  # noqa: E402
 
@@ -303,7 +303,7 @@ class AsyncChronicle:
         return self._discover
 
     @property
-    def links(self):
+    def links(self) -> AsyncLinksClient:
         if self._links is None:
             from .links.client import AsyncLinksClient  # noqa: E402
 
@@ -311,7 +311,7 @@ class AsyncChronicle:
         return self._links
 
     @property
-    def sdk(self):
+    def sdk(self) -> AsyncSdkClient:
         if self._sdk is None:
             from .sdk.client import AsyncSdkClient  # noqa: E402
 
