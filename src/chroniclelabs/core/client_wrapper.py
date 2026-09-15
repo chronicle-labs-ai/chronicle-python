@@ -37,7 +37,7 @@ class BaseClientWrapper:
             "X-Fern-Runtime": f"python/{platform.python_version()}",
             "X-Fern-Platform": f"{platform.system().lower()}/{platform.release()}",
             "X-Fern-SDK-Name": "chroniclelabs",
-            "X-Fern-SDK-Version": "0.0.8",
+            "X-Fern-SDK-Version": "0.0.9",
             **(self.get_custom_headers() or {}),
         }
         headers["Authorization"] = f"Bearer {self._get_token()}"
