@@ -7,56 +7,684 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .accepted_response import AcceptedResponse
+    from .add_task_from_trace_response import AddTaskFromTraceResponse
+    from .add_task_from_trace_response_dataset import AddTaskFromTraceResponseDataset
+    from .add_task_from_trace_response_dataset_purpose import AddTaskFromTraceResponseDatasetPurpose
+    from .add_task_from_trace_response_membership import AddTaskFromTraceResponseMembership
+    from .add_task_from_trace_response_membership_purpose import AddTaskFromTraceResponseMembershipPurpose
+    from .add_task_from_trace_response_membership_split import AddTaskFromTraceResponseMembershipSplit
+    from .add_task_from_trace_response_membership_subject_kind import AddTaskFromTraceResponseMembershipSubjectKind
+    from .agent_chat_session import AgentChatSession
+    from .agent_chat_session_messages_item import AgentChatSessionMessagesItem
+    from .agent_chat_session_messages_item_role import AgentChatSessionMessagesItemRole
+    from .agent_chat_session_messages_item_steps_item import AgentChatSessionMessagesItemStepsItem
+    from .agent_snapshot import AgentSnapshot
+    from .agent_snapshot_hash_index_item import AgentSnapshotHashIndexItem
+    from .agent_snapshot_hash_index_item_framework import AgentSnapshotHashIndexItemFramework
+    from .agent_snapshot_hash_index_item_kind import AgentSnapshotHashIndexItemKind
+    from .agent_snapshot_runs_item import AgentSnapshotRunsItem
+    from .agent_snapshot_runs_item_error import AgentSnapshotRunsItemError
+    from .agent_snapshot_runs_item_operation import AgentSnapshotRunsItemOperation
+    from .agent_snapshot_runs_item_prepared_call import AgentSnapshotRunsItemPreparedCall
+    from .agent_snapshot_runs_item_response import AgentSnapshotRunsItemResponse
+    from .agent_snapshot_runs_item_response_usage import AgentSnapshotRunsItemResponseUsage
+    from .agent_snapshot_runs_item_status import AgentSnapshotRunsItemStatus
+    from .agent_snapshot_runs_item_tool_calls_item import AgentSnapshotRunsItemToolCallsItem
+    from .agent_snapshot_runs_item_tool_calls_item_error import AgentSnapshotRunsItemToolCallsItemError
+    from .agent_snapshot_runs_item_tool_calls_item_status import AgentSnapshotRunsItemToolCallsItemStatus
+    from .agent_snapshot_summary import AgentSnapshotSummary
+    from .agent_snapshot_summary_framework import AgentSnapshotSummaryFramework
+    from .agent_snapshot_summary_model import AgentSnapshotSummaryModel
+    from .agent_snapshot_versions_item import AgentSnapshotVersionsItem
+    from .agent_snapshot_versions_item_artifact import AgentSnapshotVersionsItemArtifact
+    from .agent_snapshot_versions_item_artifact_framework import AgentSnapshotVersionsItemArtifactFramework
+    from .agent_snapshot_versions_item_artifact_input_contract_preview import (
+        AgentSnapshotVersionsItemArtifactInputContractPreview,
+    )
+    from .agent_snapshot_versions_item_artifact_knowledge_sources_item import (
+        AgentSnapshotVersionsItemArtifactKnowledgeSourcesItem,
+    )
+    from .agent_snapshot_versions_item_artifact_knowledge_sources_item_kind import (
+        AgentSnapshotVersionsItemArtifactKnowledgeSourcesItemKind,
+    )
+    from .agent_snapshot_versions_item_artifact_model import AgentSnapshotVersionsItemArtifactModel
+    from .agent_snapshot_versions_item_artifact_output_contract_preview import (
+        AgentSnapshotVersionsItemArtifactOutputContractPreview,
+    )
+    from .agent_snapshot_versions_item_artifact_policy import AgentSnapshotVersionsItemArtifactPolicy
+    from .agent_snapshot_versions_item_artifact_provenance import AgentSnapshotVersionsItemArtifactProvenance
+    from .agent_snapshot_versions_item_artifact_tools_item import AgentSnapshotVersionsItemArtifactToolsItem
+    from .agent_snapshot_versions_item_artifact_workflow_graph_preview import (
+        AgentSnapshotVersionsItemArtifactWorkflowGraphPreview,
+    )
+    from .agent_snapshot_versions_item_artifact_workflow_graph_preview_edges_item import (
+        AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewEdgesItem,
+    )
+    from .agent_snapshot_versions_item_artifact_workflow_graph_preview_nodes_item import (
+        AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewNodesItem,
+    )
+    from .agent_snapshot_versions_item_artifact_workflow_graph_preview_nodes_item_kind import (
+        AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewNodesItemKind,
+    )
+    from .agent_snapshot_versions_item_status import AgentSnapshotVersionsItemStatus
+    from .agent_summary import AgentSummary
+    from .agent_summary_framework import AgentSummaryFramework
+    from .agent_summary_model import AgentSummaryModel
+    from .agent_version_summary import AgentVersionSummary
+    from .agent_version_summary_artifact import AgentVersionSummaryArtifact
+    from .agent_version_summary_artifact_framework import AgentVersionSummaryArtifactFramework
+    from .agent_version_summary_artifact_input_contract_preview import AgentVersionSummaryArtifactInputContractPreview
+    from .agent_version_summary_artifact_knowledge_sources_item import AgentVersionSummaryArtifactKnowledgeSourcesItem
+    from .agent_version_summary_artifact_knowledge_sources_item_kind import (
+        AgentVersionSummaryArtifactKnowledgeSourcesItemKind,
+    )
+    from .agent_version_summary_artifact_model import AgentVersionSummaryArtifactModel
+    from .agent_version_summary_artifact_output_contract_preview import AgentVersionSummaryArtifactOutputContractPreview
+    from .agent_version_summary_artifact_policy import AgentVersionSummaryArtifactPolicy
+    from .agent_version_summary_artifact_provenance import AgentVersionSummaryArtifactProvenance
+    from .agent_version_summary_artifact_tools_item import AgentVersionSummaryArtifactToolsItem
+    from .agent_version_summary_artifact_workflow_graph_preview import AgentVersionSummaryArtifactWorkflowGraphPreview
+    from .agent_version_summary_artifact_workflow_graph_preview_edges_item import (
+        AgentVersionSummaryArtifactWorkflowGraphPreviewEdgesItem,
+    )
+    from .agent_version_summary_artifact_workflow_graph_preview_nodes_item import (
+        AgentVersionSummaryArtifactWorkflowGraphPreviewNodesItem,
+    )
+    from .agent_version_summary_artifact_workflow_graph_preview_nodes_item_kind import (
+        AgentVersionSummaryArtifactWorkflowGraphPreviewNodesItemKind,
+    )
+    from .agent_version_summary_status import AgentVersionSummaryStatus
+    from .backtest_job_detail_response import BacktestJobDetailResponse
+    from .backtest_job_detail_response_job import BacktestJobDetailResponseJob
+    from .backtest_job_detail_response_job_mode import BacktestJobDetailResponseJobMode
+    from .backtest_job_detail_response_job_retry_config import BacktestJobDetailResponseJobRetryConfig
+    from .backtest_job_detail_response_job_sandbox_driver import BacktestJobDetailResponseJobSandboxDriver
+    from .backtest_job_detail_response_job_status import BacktestJobDetailResponseJobStatus
+    from .backtest_job_detail_response_run import BacktestJobDetailResponseRun
+    from .backtest_job_detail_response_run_mode import BacktestJobDetailResponseRunMode
+    from .backtest_job_detail_response_run_status import BacktestJobDetailResponseRunStatus
+    from .backtest_trial_detail_response import BacktestTrialDetailResponse
+    from .backtest_trial_detail_response_artifacts_item import BacktestTrialDetailResponseArtifactsItem
+    from .backtest_trial_detail_response_artifacts_item_kind import BacktestTrialDetailResponseArtifactsItemKind
+    from .backtest_trial_detail_response_scorers_item import BacktestTrialDetailResponseScorersItem
+    from .backtest_trial_detail_response_scorers_item_grader import BacktestTrialDetailResponseScorersItemGrader
+    from .backtest_trial_detail_response_scorers_item_grader_code import (
+        BacktestTrialDetailResponseScorersItemGraderCode,
+    )
+    from .backtest_trial_detail_response_scorers_item_grader_code_language import (
+        BacktestTrialDetailResponseScorersItemGraderCodeLanguage,
+    )
+    from .backtest_trial_detail_response_scorers_item_grader_judge import (
+        BacktestTrialDetailResponseScorersItemGraderJudge,
+    )
+    from .backtest_trial_detail_response_scorers_item_grader_judge_choice_scores_item import (
+        BacktestTrialDetailResponseScorersItemGraderJudgeChoiceScoresItem,
+    )
+    from .backtest_trial_detail_response_scorers_item_grader_kind import (
+        BacktestTrialDetailResponseScorersItemGraderKind,
+    )
+    from .backtest_trial_detail_response_scorers_item_grader_source import (
+        BacktestTrialDetailResponseScorersItemGraderSource,
+    )
+    from .backtest_trial_detail_response_scorers_item_grader_weight import (
+        BacktestTrialDetailResponseScorersItemGraderWeight,
+    )
+    from .backtest_trial_detail_response_steps_item import BacktestTrialDetailResponseStepsItem
+    from .backtest_trial_detail_response_steps_item_actor import BacktestTrialDetailResponseStepsItemActor
+    from .backtest_trial_detail_response_steps_item_kind import BacktestTrialDetailResponseStepsItemKind
+    from .backtest_trial_detail_response_steps_item_status import BacktestTrialDetailResponseStepsItemStatus
+    from .backtest_trial_detail_response_trial import BacktestTrialDetailResponseTrial
+    from .backtest_trial_detail_response_trial_exception import BacktestTrialDetailResponseTrialException
+    from .backtest_trial_detail_response_trial_status import BacktestTrialDetailResponseTrialStatus
+    from .backtest_trial_detail_response_trial_timings import BacktestTrialDetailResponseTrialTimings
+    from .backtests_availability import BacktestsAvailability
+    from .backtests_availability_agents_item import BacktestsAvailabilityAgentsItem
+    from .backtests_availability_agents_item_framework import BacktestsAvailabilityAgentsItemFramework
+    from .backtests_availability_agents_item_model import BacktestsAvailabilityAgentsItemModel
+    from .backtests_availability_dataset_snapshots_value import BacktestsAvailabilityDatasetSnapshotsValue
+    from .backtests_availability_dataset_snapshots_value_clusters_item import (
+        BacktestsAvailabilityDatasetSnapshotsValueClustersItem,
+    )
+    from .backtests_availability_dataset_snapshots_value_dataset import (
+        BacktestsAvailabilityDatasetSnapshotsValueDataset,
+    )
+    from .backtests_availability_dataset_snapshots_value_dataset_purpose import (
+        BacktestsAvailabilityDatasetSnapshotsValueDatasetPurpose,
+    )
+    from .backtests_availability_dataset_snapshots_value_edges_item import (
+        BacktestsAvailabilityDatasetSnapshotsValueEdgesItem,
+    )
+    from .backtests_availability_dataset_snapshots_value_events_item import (
+        BacktestsAvailabilityDatasetSnapshotsValueEventsItem,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItem,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_subject_kind import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemSubjectKind,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_task import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemTask,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_task_config import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemTaskConfig,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_task_config_network_mode import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemTaskConfigNetworkMode,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItem,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_code import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemCode,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_code_language import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemCodeLanguage,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_judge import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemJudge,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_judge_choice_scores_item import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemJudgeChoiceScoresItem,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_kind import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemKind,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_source import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemSource,
+    )
+    from .backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_weight import (
+        BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemWeight,
+    )
+    from .backtests_availability_dataset_snapshots_value_traces_item import (
+        BacktestsAvailabilityDatasetSnapshotsValueTracesItem,
+    )
+    from .backtests_availability_dataset_snapshots_value_traces_item_split import (
+        BacktestsAvailabilityDatasetSnapshotsValueTracesItemSplit,
+    )
+    from .backtests_availability_dataset_snapshots_value_traces_item_status import (
+        BacktestsAvailabilityDatasetSnapshotsValueTracesItemStatus,
+    )
+    from .backtests_availability_datasets_item import BacktestsAvailabilityDatasetsItem
+    from .backtests_availability_datasets_item_purpose import BacktestsAvailabilityDatasetsItemPurpose
+    from .backtests_availability_environments_item import BacktestsAvailabilityEnvironmentsItem
+    from .cancel_backtest_job_response import CancelBacktestJobResponse
+    from .cancel_backtest_job_response_previous_status import CancelBacktestJobResponsePreviousStatus
+    from .compile_environment_response import CompileEnvironmentResponse
+    from .create_agent_chat_session_response import CreateAgentChatSessionResponse
+    from .create_agent_chat_session_response_session import CreateAgentChatSessionResponseSession
+    from .create_agent_chat_session_response_session_messages_item import (
+        CreateAgentChatSessionResponseSessionMessagesItem,
+    )
+    from .create_agent_chat_session_response_session_messages_item_role import (
+        CreateAgentChatSessionResponseSessionMessagesItemRole,
+    )
+    from .create_agent_chat_session_response_session_messages_item_steps_item import (
+        CreateAgentChatSessionResponseSessionMessagesItemStepsItem,
+    )
+    from .create_backtest_job_response import CreateBacktestJobResponse
+    from .create_backtest_job_response_run import CreateBacktestJobResponseRun
+    from .create_backtest_job_response_run_mode import CreateBacktestJobResponseRunMode
+    from .create_backtest_job_response_run_status import CreateBacktestJobResponseRunStatus
     from .create_link_response import CreateLinkResponse
+    from .create_task_request import CreateTaskRequest
+    from .create_task_suite_with_trace_response import CreateTaskSuiteWithTraceResponse
+    from .create_task_suite_with_trace_response_dataset import CreateTaskSuiteWithTraceResponseDataset
+    from .create_task_suite_with_trace_response_dataset_purpose import CreateTaskSuiteWithTraceResponseDatasetPurpose
+    from .create_task_suite_with_trace_response_membership import CreateTaskSuiteWithTraceResponseMembership
+    from .create_task_suite_with_trace_response_membership_purpose import (
+        CreateTaskSuiteWithTraceResponseMembershipPurpose,
+    )
+    from .create_task_suite_with_trace_response_membership_split import CreateTaskSuiteWithTraceResponseMembershipSplit
+    from .create_task_suite_with_trace_response_membership_subject_kind import (
+        CreateTaskSuiteWithTraceResponseMembershipSubjectKind,
+    )
+    from .created_sdk_key import CreatedSdkKey
+    from .dataset_cluster import DatasetCluster
+    from .dataset_saved_view import DatasetSavedView
+    from .dataset_saved_view_scope import DatasetSavedViewScope
+    from .dataset_saved_view_state import DatasetSavedViewState
+    from .dataset_saved_view_state_filters_item import DatasetSavedViewStateFiltersItem
+    from .dataset_saved_view_state_sorting_item import DatasetSavedViewStateSortingItem
     from .entity_info import EntityInfo
     from .entity_list_response import EntityListResponse
     from .entity_ref import EntityRef
     from .entity_type_info import EntityTypeInfo
     from .entity_type_list_response import EntityTypeListResponse
+    from .environment_record import EnvironmentRecord
+    from .environment_response import EnvironmentResponse
+    from .environment_spec import EnvironmentSpec
+    from .environment_spec_interception import EnvironmentSpecInterception
+    from .environment_spec_mcp_item import EnvironmentSpecMcpItem
+    from .environment_spec_services_item import EnvironmentSpecServicesItem
+    from .environment_spec_twins_item import EnvironmentSpecTwinsItem
+    from .environment_version_record import EnvironmentVersionRecord
+    from .environment_version_record_spec import EnvironmentVersionRecordSpec
+    from .environment_version_record_spec_interception import EnvironmentVersionRecordSpecInterception
+    from .environment_version_record_spec_mcp_item import EnvironmentVersionRecordSpecMcpItem
+    from .environment_version_record_spec_services_item import EnvironmentVersionRecordSpecServicesItem
+    from .environment_version_record_spec_twins_item import EnvironmentVersionRecordSpecTwinsItem
+    from .environment_version_record_status import EnvironmentVersionRecordStatus
+    from .environment_version_response import EnvironmentVersionResponse
+    from .environment_version_status import EnvironmentVersionStatus
     from .error_response import ErrorResponse
     from .error_response_code import ErrorResponseCode
     from .event import Event
     from .event_list_response import EventListResponse
     from .event_page import EventPage
     from .event_result import EventResult
+    from .hash_index_entry import HashIndexEntry
+    from .hash_index_entry_framework import HashIndexEntryFramework
+    from .hash_index_entry_kind import HashIndexEntryKind
     from .ingest_request import IngestRequest
     from .ingest_response import IngestResponse
     from .link_entity_response import LinkEntityResponse
+    from .list_backtest_job_trials_response import ListBacktestJobTrialsResponse
+    from .list_backtest_job_trials_response_trials_item import ListBacktestJobTrialsResponseTrialsItem
+    from .list_backtest_job_trials_response_trials_item_exception import (
+        ListBacktestJobTrialsResponseTrialsItemException,
+    )
+    from .list_backtest_job_trials_response_trials_item_status import ListBacktestJobTrialsResponseTrialsItemStatus
+    from .list_backtest_job_trials_response_trials_item_timings import ListBacktestJobTrialsResponseTrialsItemTimings
+    from .list_backtest_jobs_response import ListBacktestJobsResponse
+    from .list_backtest_jobs_response_runs_item import ListBacktestJobsResponseRunsItem
+    from .list_backtest_jobs_response_runs_item_mode import ListBacktestJobsResponseRunsItemMode
+    from .list_backtest_jobs_response_runs_item_status import ListBacktestJobsResponseRunsItemStatus
+    from .list_environments_response import ListEnvironmentsResponse
+    from .list_environments_response_environments_item import ListEnvironmentsResponseEnvironmentsItem
     from .media_attachment import MediaAttachment
     from .pending_entity_ref import PendingEntityRef
+    from .refresh_membership_request import RefreshMembershipRequest
+    from .sdk_key import SdkKey
+    from .sdk_key_list_response import SdkKeyListResponse
+    from .send_agent_chat_message_response import SendAgentChatMessageResponse
+    from .send_agent_chat_message_response_session import SendAgentChatMessageResponseSession
+    from .send_agent_chat_message_response_session_messages_item import SendAgentChatMessageResponseSessionMessagesItem
+    from .send_agent_chat_message_response_session_messages_item_role import (
+        SendAgentChatMessageResponseSessionMessagesItemRole,
+    )
+    from .send_agent_chat_message_response_session_messages_item_steps_item import (
+        SendAgentChatMessageResponseSessionMessagesItemStepsItem,
+    )
     from .signal_request import SignalRequest
     from .source_info import SourceInfo
     from .source_list_response import SourceListResponse
     from .source_schema import SourceSchema
     from .span_request import SpanRequest
     from .status_response import StatusResponse
+    from .task import Task
+    from .task_event_page import TaskEventPage
+    from .task_event_page_items_item import TaskEventPageItemsItem
+    from .task_membership import TaskMembership
+    from .task_membership_purpose import TaskMembershipPurpose
+    from .task_membership_split import TaskMembershipSplit
+    from .task_membership_subject_kind import TaskMembershipSubjectKind
+    from .task_page import TaskPage
+    from .task_page_items_item import TaskPageItemsItem
+    from .task_page_items_item_split import TaskPageItemsItemSplit
+    from .task_page_items_item_status import TaskPageItemsItemStatus
+    from .task_page_items_item_subject_kind import TaskPageItemsItemSubjectKind
+    from .task_page_items_item_task import TaskPageItemsItemTask
+    from .task_page_items_item_task_config import TaskPageItemsItemTaskConfig
+    from .task_page_items_item_task_config_network_mode import TaskPageItemsItemTaskConfigNetworkMode
+    from .task_page_items_item_verifiers_item import TaskPageItemsItemVerifiersItem
+    from .task_page_items_item_verifiers_item_weight import TaskPageItemsItemVerifiersItemWeight
+    from .task_split import TaskSplit
+    from .task_status import TaskStatus
+    from .task_subject_kind import TaskSubjectKind
+    from .task_suite import TaskSuite
+    from .task_suite_detail import TaskSuiteDetail
+    from .task_suite_detail_clusters_item import TaskSuiteDetailClustersItem
+    from .task_suite_detail_dataset import TaskSuiteDetailDataset
+    from .task_suite_detail_dataset_purpose import TaskSuiteDetailDatasetPurpose
+    from .task_suite_detail_edges_item import TaskSuiteDetailEdgesItem
+    from .task_suite_eval_run import TaskSuiteEvalRun
+    from .task_suite_eval_run_status import TaskSuiteEvalRunStatus
+    from .task_suite_eval_run_task_results_item import TaskSuiteEvalRunTaskResultsItem
+    from .task_suite_page import TaskSuitePage
+    from .task_suite_page_items_item import TaskSuitePageItemsItem
+    from .task_suite_page_items_item_purpose import TaskSuitePageItemsItemPurpose
+    from .task_suite_purpose import TaskSuitePurpose
+    from .task_suite_snapshot import TaskSuiteSnapshot
+    from .task_suite_snapshot_clusters_item import TaskSuiteSnapshotClustersItem
+    from .task_suite_snapshot_dataset import TaskSuiteSnapshotDataset
+    from .task_suite_snapshot_dataset_purpose import TaskSuiteSnapshotDatasetPurpose
+    from .task_suite_snapshot_edges_item import TaskSuiteSnapshotEdgesItem
+    from .task_suite_snapshot_events_item import TaskSuiteSnapshotEventsItem
+    from .task_suite_snapshot_tasks_item import TaskSuiteSnapshotTasksItem
+    from .task_suite_snapshot_tasks_item_subject_kind import TaskSuiteSnapshotTasksItemSubjectKind
+    from .task_suite_snapshot_tasks_item_task import TaskSuiteSnapshotTasksItemTask
+    from .task_suite_snapshot_tasks_item_task_config import TaskSuiteSnapshotTasksItemTaskConfig
+    from .task_suite_snapshot_tasks_item_task_config_network_mode import TaskSuiteSnapshotTasksItemTaskConfigNetworkMode
+    from .task_suite_snapshot_tasks_item_verifiers_item import TaskSuiteSnapshotTasksItemVerifiersItem
+    from .task_suite_snapshot_tasks_item_verifiers_item_code import TaskSuiteSnapshotTasksItemVerifiersItemCode
+    from .task_suite_snapshot_tasks_item_verifiers_item_code_language import (
+        TaskSuiteSnapshotTasksItemVerifiersItemCodeLanguage,
+    )
+    from .task_suite_snapshot_tasks_item_verifiers_item_judge import TaskSuiteSnapshotTasksItemVerifiersItemJudge
+    from .task_suite_snapshot_tasks_item_verifiers_item_judge_choice_scores_item import (
+        TaskSuiteSnapshotTasksItemVerifiersItemJudgeChoiceScoresItem,
+    )
+    from .task_suite_snapshot_tasks_item_verifiers_item_kind import TaskSuiteSnapshotTasksItemVerifiersItemKind
+    from .task_suite_snapshot_tasks_item_verifiers_item_source import TaskSuiteSnapshotTasksItemVerifiersItemSource
+    from .task_suite_snapshot_tasks_item_verifiers_item_weight import TaskSuiteSnapshotTasksItemVerifiersItemWeight
+    from .task_suite_snapshot_traces_item import TaskSuiteSnapshotTracesItem
+    from .task_suite_snapshot_traces_item_split import TaskSuiteSnapshotTracesItemSplit
+    from .task_suite_snapshot_traces_item_status import TaskSuiteSnapshotTracesItemStatus
+    from .task_suite_version import TaskSuiteVersion
+    from .task_task import TaskTask
+    from .task_task_config import TaskTaskConfig
+    from .task_task_config_network_mode import TaskTaskConfigNetworkMode
+    from .task_verifiers_item import TaskVerifiersItem
+    from .task_verifiers_item_weight import TaskVerifiersItemWeight
     from .trace_request import TraceRequest
+    from .trial_event import (
+        TrialEvent,
+        TrialEvent_JobFinished,
+        TrialEvent_JobStarted,
+        TrialEvent_TrialFinished,
+        TrialEvent_TrialPhaseChanged,
+        TrialEvent_TrialRewardsRecorded,
+    )
+    from .trial_event_job_finished import TrialEventJobFinished
+    from .trial_event_job_finished_status import TrialEventJobFinishedStatus
+    from .trial_event_job_started import TrialEventJobStarted
+    from .trial_event_trial_finished import TrialEventTrialFinished
+    from .trial_event_trial_finished_exception import TrialEventTrialFinishedException
+    from .trial_event_trial_finished_status import TrialEventTrialFinishedStatus
+    from .trial_event_trial_phase_changed import TrialEventTrialPhaseChanged
+    from .trial_event_trial_phase_changed_phase import TrialEventTrialPhaseChangedPhase
+    from .trial_event_trial_rewards_recorded import TrialEventTrialRewardsRecorded
+    from .update_task_request import UpdateTaskRequest
 _dynamic_imports: typing.Dict[str, str] = {
     "AcceptedResponse": ".accepted_response",
+    "AddTaskFromTraceResponse": ".add_task_from_trace_response",
+    "AddTaskFromTraceResponseDataset": ".add_task_from_trace_response_dataset",
+    "AddTaskFromTraceResponseDatasetPurpose": ".add_task_from_trace_response_dataset_purpose",
+    "AddTaskFromTraceResponseMembership": ".add_task_from_trace_response_membership",
+    "AddTaskFromTraceResponseMembershipPurpose": ".add_task_from_trace_response_membership_purpose",
+    "AddTaskFromTraceResponseMembershipSplit": ".add_task_from_trace_response_membership_split",
+    "AddTaskFromTraceResponseMembershipSubjectKind": ".add_task_from_trace_response_membership_subject_kind",
+    "AgentChatSession": ".agent_chat_session",
+    "AgentChatSessionMessagesItem": ".agent_chat_session_messages_item",
+    "AgentChatSessionMessagesItemRole": ".agent_chat_session_messages_item_role",
+    "AgentChatSessionMessagesItemStepsItem": ".agent_chat_session_messages_item_steps_item",
+    "AgentSnapshot": ".agent_snapshot",
+    "AgentSnapshotHashIndexItem": ".agent_snapshot_hash_index_item",
+    "AgentSnapshotHashIndexItemFramework": ".agent_snapshot_hash_index_item_framework",
+    "AgentSnapshotHashIndexItemKind": ".agent_snapshot_hash_index_item_kind",
+    "AgentSnapshotRunsItem": ".agent_snapshot_runs_item",
+    "AgentSnapshotRunsItemError": ".agent_snapshot_runs_item_error",
+    "AgentSnapshotRunsItemOperation": ".agent_snapshot_runs_item_operation",
+    "AgentSnapshotRunsItemPreparedCall": ".agent_snapshot_runs_item_prepared_call",
+    "AgentSnapshotRunsItemResponse": ".agent_snapshot_runs_item_response",
+    "AgentSnapshotRunsItemResponseUsage": ".agent_snapshot_runs_item_response_usage",
+    "AgentSnapshotRunsItemStatus": ".agent_snapshot_runs_item_status",
+    "AgentSnapshotRunsItemToolCallsItem": ".agent_snapshot_runs_item_tool_calls_item",
+    "AgentSnapshotRunsItemToolCallsItemError": ".agent_snapshot_runs_item_tool_calls_item_error",
+    "AgentSnapshotRunsItemToolCallsItemStatus": ".agent_snapshot_runs_item_tool_calls_item_status",
+    "AgentSnapshotSummary": ".agent_snapshot_summary",
+    "AgentSnapshotSummaryFramework": ".agent_snapshot_summary_framework",
+    "AgentSnapshotSummaryModel": ".agent_snapshot_summary_model",
+    "AgentSnapshotVersionsItem": ".agent_snapshot_versions_item",
+    "AgentSnapshotVersionsItemArtifact": ".agent_snapshot_versions_item_artifact",
+    "AgentSnapshotVersionsItemArtifactFramework": ".agent_snapshot_versions_item_artifact_framework",
+    "AgentSnapshotVersionsItemArtifactInputContractPreview": ".agent_snapshot_versions_item_artifact_input_contract_preview",
+    "AgentSnapshotVersionsItemArtifactKnowledgeSourcesItem": ".agent_snapshot_versions_item_artifact_knowledge_sources_item",
+    "AgentSnapshotVersionsItemArtifactKnowledgeSourcesItemKind": ".agent_snapshot_versions_item_artifact_knowledge_sources_item_kind",
+    "AgentSnapshotVersionsItemArtifactModel": ".agent_snapshot_versions_item_artifact_model",
+    "AgentSnapshotVersionsItemArtifactOutputContractPreview": ".agent_snapshot_versions_item_artifact_output_contract_preview",
+    "AgentSnapshotVersionsItemArtifactPolicy": ".agent_snapshot_versions_item_artifact_policy",
+    "AgentSnapshotVersionsItemArtifactProvenance": ".agent_snapshot_versions_item_artifact_provenance",
+    "AgentSnapshotVersionsItemArtifactToolsItem": ".agent_snapshot_versions_item_artifact_tools_item",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreview": ".agent_snapshot_versions_item_artifact_workflow_graph_preview",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewEdgesItem": ".agent_snapshot_versions_item_artifact_workflow_graph_preview_edges_item",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewNodesItem": ".agent_snapshot_versions_item_artifact_workflow_graph_preview_nodes_item",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewNodesItemKind": ".agent_snapshot_versions_item_artifact_workflow_graph_preview_nodes_item_kind",
+    "AgentSnapshotVersionsItemStatus": ".agent_snapshot_versions_item_status",
+    "AgentSummary": ".agent_summary",
+    "AgentSummaryFramework": ".agent_summary_framework",
+    "AgentSummaryModel": ".agent_summary_model",
+    "AgentVersionSummary": ".agent_version_summary",
+    "AgentVersionSummaryArtifact": ".agent_version_summary_artifact",
+    "AgentVersionSummaryArtifactFramework": ".agent_version_summary_artifact_framework",
+    "AgentVersionSummaryArtifactInputContractPreview": ".agent_version_summary_artifact_input_contract_preview",
+    "AgentVersionSummaryArtifactKnowledgeSourcesItem": ".agent_version_summary_artifact_knowledge_sources_item",
+    "AgentVersionSummaryArtifactKnowledgeSourcesItemKind": ".agent_version_summary_artifact_knowledge_sources_item_kind",
+    "AgentVersionSummaryArtifactModel": ".agent_version_summary_artifact_model",
+    "AgentVersionSummaryArtifactOutputContractPreview": ".agent_version_summary_artifact_output_contract_preview",
+    "AgentVersionSummaryArtifactPolicy": ".agent_version_summary_artifact_policy",
+    "AgentVersionSummaryArtifactProvenance": ".agent_version_summary_artifact_provenance",
+    "AgentVersionSummaryArtifactToolsItem": ".agent_version_summary_artifact_tools_item",
+    "AgentVersionSummaryArtifactWorkflowGraphPreview": ".agent_version_summary_artifact_workflow_graph_preview",
+    "AgentVersionSummaryArtifactWorkflowGraphPreviewEdgesItem": ".agent_version_summary_artifact_workflow_graph_preview_edges_item",
+    "AgentVersionSummaryArtifactWorkflowGraphPreviewNodesItem": ".agent_version_summary_artifact_workflow_graph_preview_nodes_item",
+    "AgentVersionSummaryArtifactWorkflowGraphPreviewNodesItemKind": ".agent_version_summary_artifact_workflow_graph_preview_nodes_item_kind",
+    "AgentVersionSummaryStatus": ".agent_version_summary_status",
+    "BacktestJobDetailResponse": ".backtest_job_detail_response",
+    "BacktestJobDetailResponseJob": ".backtest_job_detail_response_job",
+    "BacktestJobDetailResponseJobMode": ".backtest_job_detail_response_job_mode",
+    "BacktestJobDetailResponseJobRetryConfig": ".backtest_job_detail_response_job_retry_config",
+    "BacktestJobDetailResponseJobSandboxDriver": ".backtest_job_detail_response_job_sandbox_driver",
+    "BacktestJobDetailResponseJobStatus": ".backtest_job_detail_response_job_status",
+    "BacktestJobDetailResponseRun": ".backtest_job_detail_response_run",
+    "BacktestJobDetailResponseRunMode": ".backtest_job_detail_response_run_mode",
+    "BacktestJobDetailResponseRunStatus": ".backtest_job_detail_response_run_status",
+    "BacktestTrialDetailResponse": ".backtest_trial_detail_response",
+    "BacktestTrialDetailResponseArtifactsItem": ".backtest_trial_detail_response_artifacts_item",
+    "BacktestTrialDetailResponseArtifactsItemKind": ".backtest_trial_detail_response_artifacts_item_kind",
+    "BacktestTrialDetailResponseScorersItem": ".backtest_trial_detail_response_scorers_item",
+    "BacktestTrialDetailResponseScorersItemGrader": ".backtest_trial_detail_response_scorers_item_grader",
+    "BacktestTrialDetailResponseScorersItemGraderCode": ".backtest_trial_detail_response_scorers_item_grader_code",
+    "BacktestTrialDetailResponseScorersItemGraderCodeLanguage": ".backtest_trial_detail_response_scorers_item_grader_code_language",
+    "BacktestTrialDetailResponseScorersItemGraderJudge": ".backtest_trial_detail_response_scorers_item_grader_judge",
+    "BacktestTrialDetailResponseScorersItemGraderJudgeChoiceScoresItem": ".backtest_trial_detail_response_scorers_item_grader_judge_choice_scores_item",
+    "BacktestTrialDetailResponseScorersItemGraderKind": ".backtest_trial_detail_response_scorers_item_grader_kind",
+    "BacktestTrialDetailResponseScorersItemGraderSource": ".backtest_trial_detail_response_scorers_item_grader_source",
+    "BacktestTrialDetailResponseScorersItemGraderWeight": ".backtest_trial_detail_response_scorers_item_grader_weight",
+    "BacktestTrialDetailResponseStepsItem": ".backtest_trial_detail_response_steps_item",
+    "BacktestTrialDetailResponseStepsItemActor": ".backtest_trial_detail_response_steps_item_actor",
+    "BacktestTrialDetailResponseStepsItemKind": ".backtest_trial_detail_response_steps_item_kind",
+    "BacktestTrialDetailResponseStepsItemStatus": ".backtest_trial_detail_response_steps_item_status",
+    "BacktestTrialDetailResponseTrial": ".backtest_trial_detail_response_trial",
+    "BacktestTrialDetailResponseTrialException": ".backtest_trial_detail_response_trial_exception",
+    "BacktestTrialDetailResponseTrialStatus": ".backtest_trial_detail_response_trial_status",
+    "BacktestTrialDetailResponseTrialTimings": ".backtest_trial_detail_response_trial_timings",
+    "BacktestsAvailability": ".backtests_availability",
+    "BacktestsAvailabilityAgentsItem": ".backtests_availability_agents_item",
+    "BacktestsAvailabilityAgentsItemFramework": ".backtests_availability_agents_item_framework",
+    "BacktestsAvailabilityAgentsItemModel": ".backtests_availability_agents_item_model",
+    "BacktestsAvailabilityDatasetSnapshotsValue": ".backtests_availability_dataset_snapshots_value",
+    "BacktestsAvailabilityDatasetSnapshotsValueClustersItem": ".backtests_availability_dataset_snapshots_value_clusters_item",
+    "BacktestsAvailabilityDatasetSnapshotsValueDataset": ".backtests_availability_dataset_snapshots_value_dataset",
+    "BacktestsAvailabilityDatasetSnapshotsValueDatasetPurpose": ".backtests_availability_dataset_snapshots_value_dataset_purpose",
+    "BacktestsAvailabilityDatasetSnapshotsValueEdgesItem": ".backtests_availability_dataset_snapshots_value_edges_item",
+    "BacktestsAvailabilityDatasetSnapshotsValueEventsItem": ".backtests_availability_dataset_snapshots_value_events_item",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItem": ".backtests_availability_dataset_snapshots_value_tasks_item",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemSubjectKind": ".backtests_availability_dataset_snapshots_value_tasks_item_subject_kind",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemTask": ".backtests_availability_dataset_snapshots_value_tasks_item_task",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemTaskConfig": ".backtests_availability_dataset_snapshots_value_tasks_item_task_config",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemTaskConfigNetworkMode": ".backtests_availability_dataset_snapshots_value_tasks_item_task_config_network_mode",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItem": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemCode": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_code",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemCodeLanguage": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_code_language",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemJudge": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_judge",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemJudgeChoiceScoresItem": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_judge_choice_scores_item",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemKind": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_kind",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemSource": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_source",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemWeight": ".backtests_availability_dataset_snapshots_value_tasks_item_verifiers_item_weight",
+    "BacktestsAvailabilityDatasetSnapshotsValueTracesItem": ".backtests_availability_dataset_snapshots_value_traces_item",
+    "BacktestsAvailabilityDatasetSnapshotsValueTracesItemSplit": ".backtests_availability_dataset_snapshots_value_traces_item_split",
+    "BacktestsAvailabilityDatasetSnapshotsValueTracesItemStatus": ".backtests_availability_dataset_snapshots_value_traces_item_status",
+    "BacktestsAvailabilityDatasetsItem": ".backtests_availability_datasets_item",
+    "BacktestsAvailabilityDatasetsItemPurpose": ".backtests_availability_datasets_item_purpose",
+    "BacktestsAvailabilityEnvironmentsItem": ".backtests_availability_environments_item",
+    "CancelBacktestJobResponse": ".cancel_backtest_job_response",
+    "CancelBacktestJobResponsePreviousStatus": ".cancel_backtest_job_response_previous_status",
+    "CompileEnvironmentResponse": ".compile_environment_response",
+    "CreateAgentChatSessionResponse": ".create_agent_chat_session_response",
+    "CreateAgentChatSessionResponseSession": ".create_agent_chat_session_response_session",
+    "CreateAgentChatSessionResponseSessionMessagesItem": ".create_agent_chat_session_response_session_messages_item",
+    "CreateAgentChatSessionResponseSessionMessagesItemRole": ".create_agent_chat_session_response_session_messages_item_role",
+    "CreateAgentChatSessionResponseSessionMessagesItemStepsItem": ".create_agent_chat_session_response_session_messages_item_steps_item",
+    "CreateBacktestJobResponse": ".create_backtest_job_response",
+    "CreateBacktestJobResponseRun": ".create_backtest_job_response_run",
+    "CreateBacktestJobResponseRunMode": ".create_backtest_job_response_run_mode",
+    "CreateBacktestJobResponseRunStatus": ".create_backtest_job_response_run_status",
     "CreateLinkResponse": ".create_link_response",
+    "CreateTaskRequest": ".create_task_request",
+    "CreateTaskSuiteWithTraceResponse": ".create_task_suite_with_trace_response",
+    "CreateTaskSuiteWithTraceResponseDataset": ".create_task_suite_with_trace_response_dataset",
+    "CreateTaskSuiteWithTraceResponseDatasetPurpose": ".create_task_suite_with_trace_response_dataset_purpose",
+    "CreateTaskSuiteWithTraceResponseMembership": ".create_task_suite_with_trace_response_membership",
+    "CreateTaskSuiteWithTraceResponseMembershipPurpose": ".create_task_suite_with_trace_response_membership_purpose",
+    "CreateTaskSuiteWithTraceResponseMembershipSplit": ".create_task_suite_with_trace_response_membership_split",
+    "CreateTaskSuiteWithTraceResponseMembershipSubjectKind": ".create_task_suite_with_trace_response_membership_subject_kind",
+    "CreatedSdkKey": ".created_sdk_key",
+    "DatasetCluster": ".dataset_cluster",
+    "DatasetSavedView": ".dataset_saved_view",
+    "DatasetSavedViewScope": ".dataset_saved_view_scope",
+    "DatasetSavedViewState": ".dataset_saved_view_state",
+    "DatasetSavedViewStateFiltersItem": ".dataset_saved_view_state_filters_item",
+    "DatasetSavedViewStateSortingItem": ".dataset_saved_view_state_sorting_item",
     "EntityInfo": ".entity_info",
     "EntityListResponse": ".entity_list_response",
     "EntityRef": ".entity_ref",
     "EntityTypeInfo": ".entity_type_info",
     "EntityTypeListResponse": ".entity_type_list_response",
+    "EnvironmentRecord": ".environment_record",
+    "EnvironmentResponse": ".environment_response",
+    "EnvironmentSpec": ".environment_spec",
+    "EnvironmentSpecInterception": ".environment_spec_interception",
+    "EnvironmentSpecMcpItem": ".environment_spec_mcp_item",
+    "EnvironmentSpecServicesItem": ".environment_spec_services_item",
+    "EnvironmentSpecTwinsItem": ".environment_spec_twins_item",
+    "EnvironmentVersionRecord": ".environment_version_record",
+    "EnvironmentVersionRecordSpec": ".environment_version_record_spec",
+    "EnvironmentVersionRecordSpecInterception": ".environment_version_record_spec_interception",
+    "EnvironmentVersionRecordSpecMcpItem": ".environment_version_record_spec_mcp_item",
+    "EnvironmentVersionRecordSpecServicesItem": ".environment_version_record_spec_services_item",
+    "EnvironmentVersionRecordSpecTwinsItem": ".environment_version_record_spec_twins_item",
+    "EnvironmentVersionRecordStatus": ".environment_version_record_status",
+    "EnvironmentVersionResponse": ".environment_version_response",
+    "EnvironmentVersionStatus": ".environment_version_status",
     "ErrorResponse": ".error_response",
     "ErrorResponseCode": ".error_response_code",
     "Event": ".event",
     "EventListResponse": ".event_list_response",
     "EventPage": ".event_page",
     "EventResult": ".event_result",
+    "HashIndexEntry": ".hash_index_entry",
+    "HashIndexEntryFramework": ".hash_index_entry_framework",
+    "HashIndexEntryKind": ".hash_index_entry_kind",
     "IngestRequest": ".ingest_request",
     "IngestResponse": ".ingest_response",
     "LinkEntityResponse": ".link_entity_response",
+    "ListBacktestJobTrialsResponse": ".list_backtest_job_trials_response",
+    "ListBacktestJobTrialsResponseTrialsItem": ".list_backtest_job_trials_response_trials_item",
+    "ListBacktestJobTrialsResponseTrialsItemException": ".list_backtest_job_trials_response_trials_item_exception",
+    "ListBacktestJobTrialsResponseTrialsItemStatus": ".list_backtest_job_trials_response_trials_item_status",
+    "ListBacktestJobTrialsResponseTrialsItemTimings": ".list_backtest_job_trials_response_trials_item_timings",
+    "ListBacktestJobsResponse": ".list_backtest_jobs_response",
+    "ListBacktestJobsResponseRunsItem": ".list_backtest_jobs_response_runs_item",
+    "ListBacktestJobsResponseRunsItemMode": ".list_backtest_jobs_response_runs_item_mode",
+    "ListBacktestJobsResponseRunsItemStatus": ".list_backtest_jobs_response_runs_item_status",
+    "ListEnvironmentsResponse": ".list_environments_response",
+    "ListEnvironmentsResponseEnvironmentsItem": ".list_environments_response_environments_item",
     "MediaAttachment": ".media_attachment",
     "PendingEntityRef": ".pending_entity_ref",
+    "RefreshMembershipRequest": ".refresh_membership_request",
+    "SdkKey": ".sdk_key",
+    "SdkKeyListResponse": ".sdk_key_list_response",
+    "SendAgentChatMessageResponse": ".send_agent_chat_message_response",
+    "SendAgentChatMessageResponseSession": ".send_agent_chat_message_response_session",
+    "SendAgentChatMessageResponseSessionMessagesItem": ".send_agent_chat_message_response_session_messages_item",
+    "SendAgentChatMessageResponseSessionMessagesItemRole": ".send_agent_chat_message_response_session_messages_item_role",
+    "SendAgentChatMessageResponseSessionMessagesItemStepsItem": ".send_agent_chat_message_response_session_messages_item_steps_item",
     "SignalRequest": ".signal_request",
     "SourceInfo": ".source_info",
     "SourceListResponse": ".source_list_response",
     "SourceSchema": ".source_schema",
     "SpanRequest": ".span_request",
     "StatusResponse": ".status_response",
+    "Task": ".task",
+    "TaskEventPage": ".task_event_page",
+    "TaskEventPageItemsItem": ".task_event_page_items_item",
+    "TaskMembership": ".task_membership",
+    "TaskMembershipPurpose": ".task_membership_purpose",
+    "TaskMembershipSplit": ".task_membership_split",
+    "TaskMembershipSubjectKind": ".task_membership_subject_kind",
+    "TaskPage": ".task_page",
+    "TaskPageItemsItem": ".task_page_items_item",
+    "TaskPageItemsItemSplit": ".task_page_items_item_split",
+    "TaskPageItemsItemStatus": ".task_page_items_item_status",
+    "TaskPageItemsItemSubjectKind": ".task_page_items_item_subject_kind",
+    "TaskPageItemsItemTask": ".task_page_items_item_task",
+    "TaskPageItemsItemTaskConfig": ".task_page_items_item_task_config",
+    "TaskPageItemsItemTaskConfigNetworkMode": ".task_page_items_item_task_config_network_mode",
+    "TaskPageItemsItemVerifiersItem": ".task_page_items_item_verifiers_item",
+    "TaskPageItemsItemVerifiersItemWeight": ".task_page_items_item_verifiers_item_weight",
+    "TaskSplit": ".task_split",
+    "TaskStatus": ".task_status",
+    "TaskSubjectKind": ".task_subject_kind",
+    "TaskSuite": ".task_suite",
+    "TaskSuiteDetail": ".task_suite_detail",
+    "TaskSuiteDetailClustersItem": ".task_suite_detail_clusters_item",
+    "TaskSuiteDetailDataset": ".task_suite_detail_dataset",
+    "TaskSuiteDetailDatasetPurpose": ".task_suite_detail_dataset_purpose",
+    "TaskSuiteDetailEdgesItem": ".task_suite_detail_edges_item",
+    "TaskSuiteEvalRun": ".task_suite_eval_run",
+    "TaskSuiteEvalRunStatus": ".task_suite_eval_run_status",
+    "TaskSuiteEvalRunTaskResultsItem": ".task_suite_eval_run_task_results_item",
+    "TaskSuitePage": ".task_suite_page",
+    "TaskSuitePageItemsItem": ".task_suite_page_items_item",
+    "TaskSuitePageItemsItemPurpose": ".task_suite_page_items_item_purpose",
+    "TaskSuitePurpose": ".task_suite_purpose",
+    "TaskSuiteSnapshot": ".task_suite_snapshot",
+    "TaskSuiteSnapshotClustersItem": ".task_suite_snapshot_clusters_item",
+    "TaskSuiteSnapshotDataset": ".task_suite_snapshot_dataset",
+    "TaskSuiteSnapshotDatasetPurpose": ".task_suite_snapshot_dataset_purpose",
+    "TaskSuiteSnapshotEdgesItem": ".task_suite_snapshot_edges_item",
+    "TaskSuiteSnapshotEventsItem": ".task_suite_snapshot_events_item",
+    "TaskSuiteSnapshotTasksItem": ".task_suite_snapshot_tasks_item",
+    "TaskSuiteSnapshotTasksItemSubjectKind": ".task_suite_snapshot_tasks_item_subject_kind",
+    "TaskSuiteSnapshotTasksItemTask": ".task_suite_snapshot_tasks_item_task",
+    "TaskSuiteSnapshotTasksItemTaskConfig": ".task_suite_snapshot_tasks_item_task_config",
+    "TaskSuiteSnapshotTasksItemTaskConfigNetworkMode": ".task_suite_snapshot_tasks_item_task_config_network_mode",
+    "TaskSuiteSnapshotTasksItemVerifiersItem": ".task_suite_snapshot_tasks_item_verifiers_item",
+    "TaskSuiteSnapshotTasksItemVerifiersItemCode": ".task_suite_snapshot_tasks_item_verifiers_item_code",
+    "TaskSuiteSnapshotTasksItemVerifiersItemCodeLanguage": ".task_suite_snapshot_tasks_item_verifiers_item_code_language",
+    "TaskSuiteSnapshotTasksItemVerifiersItemJudge": ".task_suite_snapshot_tasks_item_verifiers_item_judge",
+    "TaskSuiteSnapshotTasksItemVerifiersItemJudgeChoiceScoresItem": ".task_suite_snapshot_tasks_item_verifiers_item_judge_choice_scores_item",
+    "TaskSuiteSnapshotTasksItemVerifiersItemKind": ".task_suite_snapshot_tasks_item_verifiers_item_kind",
+    "TaskSuiteSnapshotTasksItemVerifiersItemSource": ".task_suite_snapshot_tasks_item_verifiers_item_source",
+    "TaskSuiteSnapshotTasksItemVerifiersItemWeight": ".task_suite_snapshot_tasks_item_verifiers_item_weight",
+    "TaskSuiteSnapshotTracesItem": ".task_suite_snapshot_traces_item",
+    "TaskSuiteSnapshotTracesItemSplit": ".task_suite_snapshot_traces_item_split",
+    "TaskSuiteSnapshotTracesItemStatus": ".task_suite_snapshot_traces_item_status",
+    "TaskSuiteVersion": ".task_suite_version",
+    "TaskTask": ".task_task",
+    "TaskTaskConfig": ".task_task_config",
+    "TaskTaskConfigNetworkMode": ".task_task_config_network_mode",
+    "TaskVerifiersItem": ".task_verifiers_item",
+    "TaskVerifiersItemWeight": ".task_verifiers_item_weight",
     "TraceRequest": ".trace_request",
+    "TrialEvent": ".trial_event",
+    "TrialEventJobFinished": ".trial_event_job_finished",
+    "TrialEventJobFinishedStatus": ".trial_event_job_finished_status",
+    "TrialEventJobStarted": ".trial_event_job_started",
+    "TrialEventTrialFinished": ".trial_event_trial_finished",
+    "TrialEventTrialFinishedException": ".trial_event_trial_finished_exception",
+    "TrialEventTrialFinishedStatus": ".trial_event_trial_finished_status",
+    "TrialEventTrialPhaseChanged": ".trial_event_trial_phase_changed",
+    "TrialEventTrialPhaseChangedPhase": ".trial_event_trial_phase_changed_phase",
+    "TrialEventTrialRewardsRecorded": ".trial_event_trial_rewards_recorded",
+    "TrialEvent_JobFinished": ".trial_event",
+    "TrialEvent_JobStarted": ".trial_event",
+    "TrialEvent_TrialFinished": ".trial_event",
+    "TrialEvent_TrialPhaseChanged": ".trial_event",
+    "TrialEvent_TrialRewardsRecorded": ".trial_event",
+    "UpdateTaskRequest": ".update_task_request",
 }
 
 
@@ -83,28 +711,291 @@ def __dir__():
 
 __all__ = [
     "AcceptedResponse",
+    "AddTaskFromTraceResponse",
+    "AddTaskFromTraceResponseDataset",
+    "AddTaskFromTraceResponseDatasetPurpose",
+    "AddTaskFromTraceResponseMembership",
+    "AddTaskFromTraceResponseMembershipPurpose",
+    "AddTaskFromTraceResponseMembershipSplit",
+    "AddTaskFromTraceResponseMembershipSubjectKind",
+    "AgentChatSession",
+    "AgentChatSessionMessagesItem",
+    "AgentChatSessionMessagesItemRole",
+    "AgentChatSessionMessagesItemStepsItem",
+    "AgentSnapshot",
+    "AgentSnapshotHashIndexItem",
+    "AgentSnapshotHashIndexItemFramework",
+    "AgentSnapshotHashIndexItemKind",
+    "AgentSnapshotRunsItem",
+    "AgentSnapshotRunsItemError",
+    "AgentSnapshotRunsItemOperation",
+    "AgentSnapshotRunsItemPreparedCall",
+    "AgentSnapshotRunsItemResponse",
+    "AgentSnapshotRunsItemResponseUsage",
+    "AgentSnapshotRunsItemStatus",
+    "AgentSnapshotRunsItemToolCallsItem",
+    "AgentSnapshotRunsItemToolCallsItemError",
+    "AgentSnapshotRunsItemToolCallsItemStatus",
+    "AgentSnapshotSummary",
+    "AgentSnapshotSummaryFramework",
+    "AgentSnapshotSummaryModel",
+    "AgentSnapshotVersionsItem",
+    "AgentSnapshotVersionsItemArtifact",
+    "AgentSnapshotVersionsItemArtifactFramework",
+    "AgentSnapshotVersionsItemArtifactInputContractPreview",
+    "AgentSnapshotVersionsItemArtifactKnowledgeSourcesItem",
+    "AgentSnapshotVersionsItemArtifactKnowledgeSourcesItemKind",
+    "AgentSnapshotVersionsItemArtifactModel",
+    "AgentSnapshotVersionsItemArtifactOutputContractPreview",
+    "AgentSnapshotVersionsItemArtifactPolicy",
+    "AgentSnapshotVersionsItemArtifactProvenance",
+    "AgentSnapshotVersionsItemArtifactToolsItem",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreview",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewEdgesItem",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewNodesItem",
+    "AgentSnapshotVersionsItemArtifactWorkflowGraphPreviewNodesItemKind",
+    "AgentSnapshotVersionsItemStatus",
+    "AgentSummary",
+    "AgentSummaryFramework",
+    "AgentSummaryModel",
+    "AgentVersionSummary",
+    "AgentVersionSummaryArtifact",
+    "AgentVersionSummaryArtifactFramework",
+    "AgentVersionSummaryArtifactInputContractPreview",
+    "AgentVersionSummaryArtifactKnowledgeSourcesItem",
+    "AgentVersionSummaryArtifactKnowledgeSourcesItemKind",
+    "AgentVersionSummaryArtifactModel",
+    "AgentVersionSummaryArtifactOutputContractPreview",
+    "AgentVersionSummaryArtifactPolicy",
+    "AgentVersionSummaryArtifactProvenance",
+    "AgentVersionSummaryArtifactToolsItem",
+    "AgentVersionSummaryArtifactWorkflowGraphPreview",
+    "AgentVersionSummaryArtifactWorkflowGraphPreviewEdgesItem",
+    "AgentVersionSummaryArtifactWorkflowGraphPreviewNodesItem",
+    "AgentVersionSummaryArtifactWorkflowGraphPreviewNodesItemKind",
+    "AgentVersionSummaryStatus",
+    "BacktestJobDetailResponse",
+    "BacktestJobDetailResponseJob",
+    "BacktestJobDetailResponseJobMode",
+    "BacktestJobDetailResponseJobRetryConfig",
+    "BacktestJobDetailResponseJobSandboxDriver",
+    "BacktestJobDetailResponseJobStatus",
+    "BacktestJobDetailResponseRun",
+    "BacktestJobDetailResponseRunMode",
+    "BacktestJobDetailResponseRunStatus",
+    "BacktestTrialDetailResponse",
+    "BacktestTrialDetailResponseArtifactsItem",
+    "BacktestTrialDetailResponseArtifactsItemKind",
+    "BacktestTrialDetailResponseScorersItem",
+    "BacktestTrialDetailResponseScorersItemGrader",
+    "BacktestTrialDetailResponseScorersItemGraderCode",
+    "BacktestTrialDetailResponseScorersItemGraderCodeLanguage",
+    "BacktestTrialDetailResponseScorersItemGraderJudge",
+    "BacktestTrialDetailResponseScorersItemGraderJudgeChoiceScoresItem",
+    "BacktestTrialDetailResponseScorersItemGraderKind",
+    "BacktestTrialDetailResponseScorersItemGraderSource",
+    "BacktestTrialDetailResponseScorersItemGraderWeight",
+    "BacktestTrialDetailResponseStepsItem",
+    "BacktestTrialDetailResponseStepsItemActor",
+    "BacktestTrialDetailResponseStepsItemKind",
+    "BacktestTrialDetailResponseStepsItemStatus",
+    "BacktestTrialDetailResponseTrial",
+    "BacktestTrialDetailResponseTrialException",
+    "BacktestTrialDetailResponseTrialStatus",
+    "BacktestTrialDetailResponseTrialTimings",
+    "BacktestsAvailability",
+    "BacktestsAvailabilityAgentsItem",
+    "BacktestsAvailabilityAgentsItemFramework",
+    "BacktestsAvailabilityAgentsItemModel",
+    "BacktestsAvailabilityDatasetSnapshotsValue",
+    "BacktestsAvailabilityDatasetSnapshotsValueClustersItem",
+    "BacktestsAvailabilityDatasetSnapshotsValueDataset",
+    "BacktestsAvailabilityDatasetSnapshotsValueDatasetPurpose",
+    "BacktestsAvailabilityDatasetSnapshotsValueEdgesItem",
+    "BacktestsAvailabilityDatasetSnapshotsValueEventsItem",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItem",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemSubjectKind",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemTask",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemTaskConfig",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemTaskConfigNetworkMode",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItem",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemCode",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemCodeLanguage",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemJudge",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemJudgeChoiceScoresItem",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemKind",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemSource",
+    "BacktestsAvailabilityDatasetSnapshotsValueTasksItemVerifiersItemWeight",
+    "BacktestsAvailabilityDatasetSnapshotsValueTracesItem",
+    "BacktestsAvailabilityDatasetSnapshotsValueTracesItemSplit",
+    "BacktestsAvailabilityDatasetSnapshotsValueTracesItemStatus",
+    "BacktestsAvailabilityDatasetsItem",
+    "BacktestsAvailabilityDatasetsItemPurpose",
+    "BacktestsAvailabilityEnvironmentsItem",
+    "CancelBacktestJobResponse",
+    "CancelBacktestJobResponsePreviousStatus",
+    "CompileEnvironmentResponse",
+    "CreateAgentChatSessionResponse",
+    "CreateAgentChatSessionResponseSession",
+    "CreateAgentChatSessionResponseSessionMessagesItem",
+    "CreateAgentChatSessionResponseSessionMessagesItemRole",
+    "CreateAgentChatSessionResponseSessionMessagesItemStepsItem",
+    "CreateBacktestJobResponse",
+    "CreateBacktestJobResponseRun",
+    "CreateBacktestJobResponseRunMode",
+    "CreateBacktestJobResponseRunStatus",
     "CreateLinkResponse",
+    "CreateTaskRequest",
+    "CreateTaskSuiteWithTraceResponse",
+    "CreateTaskSuiteWithTraceResponseDataset",
+    "CreateTaskSuiteWithTraceResponseDatasetPurpose",
+    "CreateTaskSuiteWithTraceResponseMembership",
+    "CreateTaskSuiteWithTraceResponseMembershipPurpose",
+    "CreateTaskSuiteWithTraceResponseMembershipSplit",
+    "CreateTaskSuiteWithTraceResponseMembershipSubjectKind",
+    "CreatedSdkKey",
+    "DatasetCluster",
+    "DatasetSavedView",
+    "DatasetSavedViewScope",
+    "DatasetSavedViewState",
+    "DatasetSavedViewStateFiltersItem",
+    "DatasetSavedViewStateSortingItem",
     "EntityInfo",
     "EntityListResponse",
     "EntityRef",
     "EntityTypeInfo",
     "EntityTypeListResponse",
+    "EnvironmentRecord",
+    "EnvironmentResponse",
+    "EnvironmentSpec",
+    "EnvironmentSpecInterception",
+    "EnvironmentSpecMcpItem",
+    "EnvironmentSpecServicesItem",
+    "EnvironmentSpecTwinsItem",
+    "EnvironmentVersionRecord",
+    "EnvironmentVersionRecordSpec",
+    "EnvironmentVersionRecordSpecInterception",
+    "EnvironmentVersionRecordSpecMcpItem",
+    "EnvironmentVersionRecordSpecServicesItem",
+    "EnvironmentVersionRecordSpecTwinsItem",
+    "EnvironmentVersionRecordStatus",
+    "EnvironmentVersionResponse",
+    "EnvironmentVersionStatus",
     "ErrorResponse",
     "ErrorResponseCode",
     "Event",
     "EventListResponse",
     "EventPage",
     "EventResult",
+    "HashIndexEntry",
+    "HashIndexEntryFramework",
+    "HashIndexEntryKind",
     "IngestRequest",
     "IngestResponse",
     "LinkEntityResponse",
+    "ListBacktestJobTrialsResponse",
+    "ListBacktestJobTrialsResponseTrialsItem",
+    "ListBacktestJobTrialsResponseTrialsItemException",
+    "ListBacktestJobTrialsResponseTrialsItemStatus",
+    "ListBacktestJobTrialsResponseTrialsItemTimings",
+    "ListBacktestJobsResponse",
+    "ListBacktestJobsResponseRunsItem",
+    "ListBacktestJobsResponseRunsItemMode",
+    "ListBacktestJobsResponseRunsItemStatus",
+    "ListEnvironmentsResponse",
+    "ListEnvironmentsResponseEnvironmentsItem",
     "MediaAttachment",
     "PendingEntityRef",
+    "RefreshMembershipRequest",
+    "SdkKey",
+    "SdkKeyListResponse",
+    "SendAgentChatMessageResponse",
+    "SendAgentChatMessageResponseSession",
+    "SendAgentChatMessageResponseSessionMessagesItem",
+    "SendAgentChatMessageResponseSessionMessagesItemRole",
+    "SendAgentChatMessageResponseSessionMessagesItemStepsItem",
     "SignalRequest",
     "SourceInfo",
     "SourceListResponse",
     "SourceSchema",
     "SpanRequest",
     "StatusResponse",
+    "Task",
+    "TaskEventPage",
+    "TaskEventPageItemsItem",
+    "TaskMembership",
+    "TaskMembershipPurpose",
+    "TaskMembershipSplit",
+    "TaskMembershipSubjectKind",
+    "TaskPage",
+    "TaskPageItemsItem",
+    "TaskPageItemsItemSplit",
+    "TaskPageItemsItemStatus",
+    "TaskPageItemsItemSubjectKind",
+    "TaskPageItemsItemTask",
+    "TaskPageItemsItemTaskConfig",
+    "TaskPageItemsItemTaskConfigNetworkMode",
+    "TaskPageItemsItemVerifiersItem",
+    "TaskPageItemsItemVerifiersItemWeight",
+    "TaskSplit",
+    "TaskStatus",
+    "TaskSubjectKind",
+    "TaskSuite",
+    "TaskSuiteDetail",
+    "TaskSuiteDetailClustersItem",
+    "TaskSuiteDetailDataset",
+    "TaskSuiteDetailDatasetPurpose",
+    "TaskSuiteDetailEdgesItem",
+    "TaskSuiteEvalRun",
+    "TaskSuiteEvalRunStatus",
+    "TaskSuiteEvalRunTaskResultsItem",
+    "TaskSuitePage",
+    "TaskSuitePageItemsItem",
+    "TaskSuitePageItemsItemPurpose",
+    "TaskSuitePurpose",
+    "TaskSuiteSnapshot",
+    "TaskSuiteSnapshotClustersItem",
+    "TaskSuiteSnapshotDataset",
+    "TaskSuiteSnapshotDatasetPurpose",
+    "TaskSuiteSnapshotEdgesItem",
+    "TaskSuiteSnapshotEventsItem",
+    "TaskSuiteSnapshotTasksItem",
+    "TaskSuiteSnapshotTasksItemSubjectKind",
+    "TaskSuiteSnapshotTasksItemTask",
+    "TaskSuiteSnapshotTasksItemTaskConfig",
+    "TaskSuiteSnapshotTasksItemTaskConfigNetworkMode",
+    "TaskSuiteSnapshotTasksItemVerifiersItem",
+    "TaskSuiteSnapshotTasksItemVerifiersItemCode",
+    "TaskSuiteSnapshotTasksItemVerifiersItemCodeLanguage",
+    "TaskSuiteSnapshotTasksItemVerifiersItemJudge",
+    "TaskSuiteSnapshotTasksItemVerifiersItemJudgeChoiceScoresItem",
+    "TaskSuiteSnapshotTasksItemVerifiersItemKind",
+    "TaskSuiteSnapshotTasksItemVerifiersItemSource",
+    "TaskSuiteSnapshotTasksItemVerifiersItemWeight",
+    "TaskSuiteSnapshotTracesItem",
+    "TaskSuiteSnapshotTracesItemSplit",
+    "TaskSuiteSnapshotTracesItemStatus",
+    "TaskSuiteVersion",
+    "TaskTask",
+    "TaskTaskConfig",
+    "TaskTaskConfigNetworkMode",
+    "TaskVerifiersItem",
+    "TaskVerifiersItemWeight",
     "TraceRequest",
+    "TrialEvent",
+    "TrialEventJobFinished",
+    "TrialEventJobFinishedStatus",
+    "TrialEventJobStarted",
+    "TrialEventTrialFinished",
+    "TrialEventTrialFinishedException",
+    "TrialEventTrialFinishedStatus",
+    "TrialEventTrialPhaseChanged",
+    "TrialEventTrialPhaseChangedPhase",
+    "TrialEventTrialRewardsRecorded",
+    "TrialEvent_JobFinished",
+    "TrialEvent_JobStarted",
+    "TrialEvent_TrialFinished",
+    "TrialEvent_TrialPhaseChanged",
+    "TrialEvent_TrialRewardsRecorded",
+    "UpdateTaskRequest",
 ]

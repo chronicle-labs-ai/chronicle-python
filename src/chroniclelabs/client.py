@@ -10,7 +10,12 @@ from .core.logging import LogConfig, Logger
 from .environment import ChronicleEnvironment
 
 if typing.TYPE_CHECKING:
+    from .agents.client import AgentsClient, AsyncAgentsClient
+    from .backtests.client import AsyncBacktestsClient, BacktestsClient
+    from .credentials.client import AsyncCredentialsClient, CredentialsClient
+    from .datasets.client import AsyncDatasetsClient, DatasetsClient
     from .discover.client import AsyncDiscoverClient, DiscoverClient
+    from .environments.client import AsyncEnvironmentsClient, EnvironmentsClient
     from .events.client import AsyncEventsClient, EventsClient
     from .links.client import AsyncLinksClient, LinksClient
     from .sdk.client import AsyncSdkClient, SdkClient
@@ -108,9 +113,14 @@ class Chronicle:
         self._discover: typing.Optional[DiscoverClient] = None
         self._links: typing.Optional[LinksClient] = None
         self._sdk: typing.Optional[SdkClient] = None
+        self._agents: typing.Optional[AgentsClient] = None
+        self._datasets: typing.Optional[DatasetsClient] = None
+        self._environments: typing.Optional[EnvironmentsClient] = None
+        self._backtests: typing.Optional[BacktestsClient] = None
+        self._credentials: typing.Optional[CredentialsClient] = None
 
     @property
-    def events(self) -> EventsClient:
+    def events(self):
         if self._events is None:
             from .events.client import EventsClient  # noqa: E402
 
@@ -118,7 +128,7 @@ class Chronicle:
         return self._events
 
     @property
-    def timeline(self) -> TimelineClient:
+    def timeline(self):
         if self._timeline is None:
             from .timeline.client import TimelineClient  # noqa: E402
 
@@ -126,7 +136,7 @@ class Chronicle:
         return self._timeline
 
     @property
-    def search(self) -> SearchClient:
+    def search(self):
         if self._search is None:
             from .search.client import SearchClient  # noqa: E402
 
@@ -134,7 +144,7 @@ class Chronicle:
         return self._search
 
     @property
-    def discover(self) -> DiscoverClient:
+    def discover(self):
         if self._discover is None:
             from .discover.client import DiscoverClient  # noqa: E402
 
@@ -142,7 +152,7 @@ class Chronicle:
         return self._discover
 
     @property
-    def links(self) -> LinksClient:
+    def links(self):
         if self._links is None:
             from .links.client import LinksClient  # noqa: E402
 
@@ -150,12 +160,52 @@ class Chronicle:
         return self._links
 
     @property
-    def sdk(self) -> SdkClient:
+    def sdk(self):
         if self._sdk is None:
             from .sdk.client import SdkClient  # noqa: E402
 
             self._sdk = SdkClient(client_wrapper=self._client_wrapper)
         return self._sdk
+
+    @property
+    def agents(self):
+        if self._agents is None:
+            from .agents.client import AgentsClient  # noqa: E402
+
+            self._agents = AgentsClient(client_wrapper=self._client_wrapper)
+        return self._agents
+
+    @property
+    def datasets(self):
+        if self._datasets is None:
+            from .datasets.client import DatasetsClient  # noqa: E402
+
+            self._datasets = DatasetsClient(client_wrapper=self._client_wrapper)
+        return self._datasets
+
+    @property
+    def environments(self):
+        if self._environments is None:
+            from .environments.client import EnvironmentsClient  # noqa: E402
+
+            self._environments = EnvironmentsClient(client_wrapper=self._client_wrapper)
+        return self._environments
+
+    @property
+    def backtests(self):
+        if self._backtests is None:
+            from .backtests.client import BacktestsClient  # noqa: E402
+
+            self._backtests = BacktestsClient(client_wrapper=self._client_wrapper)
+        return self._backtests
+
+    @property
+    def credentials(self):
+        if self._credentials is None:
+            from .credentials.client import CredentialsClient  # noqa: E402
+
+            self._credentials = CredentialsClient(client_wrapper=self._client_wrapper)
+        return self._credentials
 
 
 def _make_default_async_client(
@@ -269,9 +319,14 @@ class AsyncChronicle:
         self._discover: typing.Optional[AsyncDiscoverClient] = None
         self._links: typing.Optional[AsyncLinksClient] = None
         self._sdk: typing.Optional[AsyncSdkClient] = None
+        self._agents: typing.Optional[AsyncAgentsClient] = None
+        self._datasets: typing.Optional[AsyncDatasetsClient] = None
+        self._environments: typing.Optional[AsyncEnvironmentsClient] = None
+        self._backtests: typing.Optional[AsyncBacktestsClient] = None
+        self._credentials: typing.Optional[AsyncCredentialsClient] = None
 
     @property
-    def events(self) -> AsyncEventsClient:
+    def events(self):
         if self._events is None:
             from .events.client import AsyncEventsClient  # noqa: E402
 
@@ -279,7 +334,7 @@ class AsyncChronicle:
         return self._events
 
     @property
-    def timeline(self) -> AsyncTimelineClient:
+    def timeline(self):
         if self._timeline is None:
             from .timeline.client import AsyncTimelineClient  # noqa: E402
 
@@ -287,7 +342,7 @@ class AsyncChronicle:
         return self._timeline
 
     @property
-    def search(self) -> AsyncSearchClient:
+    def search(self):
         if self._search is None:
             from .search.client import AsyncSearchClient  # noqa: E402
 
@@ -295,7 +350,7 @@ class AsyncChronicle:
         return self._search
 
     @property
-    def discover(self) -> AsyncDiscoverClient:
+    def discover(self):
         if self._discover is None:
             from .discover.client import AsyncDiscoverClient  # noqa: E402
 
@@ -303,7 +358,7 @@ class AsyncChronicle:
         return self._discover
 
     @property
-    def links(self) -> AsyncLinksClient:
+    def links(self):
         if self._links is None:
             from .links.client import AsyncLinksClient  # noqa: E402
 
@@ -311,12 +366,52 @@ class AsyncChronicle:
         return self._links
 
     @property
-    def sdk(self) -> AsyncSdkClient:
+    def sdk(self):
         if self._sdk is None:
             from .sdk.client import AsyncSdkClient  # noqa: E402
 
             self._sdk = AsyncSdkClient(client_wrapper=self._client_wrapper)
         return self._sdk
+
+    @property
+    def agents(self):
+        if self._agents is None:
+            from .agents.client import AsyncAgentsClient  # noqa: E402
+
+            self._agents = AsyncAgentsClient(client_wrapper=self._client_wrapper)
+        return self._agents
+
+    @property
+    def datasets(self):
+        if self._datasets is None:
+            from .datasets.client import AsyncDatasetsClient  # noqa: E402
+
+            self._datasets = AsyncDatasetsClient(client_wrapper=self._client_wrapper)
+        return self._datasets
+
+    @property
+    def environments(self):
+        if self._environments is None:
+            from .environments.client import AsyncEnvironmentsClient  # noqa: E402
+
+            self._environments = AsyncEnvironmentsClient(client_wrapper=self._client_wrapper)
+        return self._environments
+
+    @property
+    def backtests(self):
+        if self._backtests is None:
+            from .backtests.client import AsyncBacktestsClient  # noqa: E402
+
+            self._backtests = AsyncBacktestsClient(client_wrapper=self._client_wrapper)
+        return self._backtests
+
+    @property
+    def credentials(self):
+        if self._credentials is None:
+            from .credentials.client import AsyncCredentialsClient  # noqa: E402
+
+            self._credentials = AsyncCredentialsClient(client_wrapper=self._client_wrapper)
+        return self._credentials
 
 
 def _get_base_url(*, base_url: typing.Optional[str] = None, environment: ChronicleEnvironment) -> str:
