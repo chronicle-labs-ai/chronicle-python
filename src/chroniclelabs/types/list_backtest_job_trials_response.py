@@ -15,6 +15,9 @@ class ListBacktestJobTrialsResponse(UniversalBaseModel):
     """
 
     has_more: typing_extensions.Annotated[bool, FieldMetadata(alias="hasMore"), pydantic.Field(alias="hasMore")]
+    next_cursor: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="nextCursor"), pydantic.Field(alias="nextCursor")
+    ] = None
     next_offset: typing_extensions.Annotated[
         typing.Optional[int], FieldMetadata(alias="nextOffset"), pydantic.Field(alias="nextOffset")
     ] = None

@@ -14,8 +14,9 @@ def test_environments_create_environment() -> None:
     test_id = "environments.create_environment.0"
     client = get_client(test_id)
     client.environments.create_environment(
-        slug="slug",
-        label="label",
+        slug="support-sandbox",
+        label="Support sandbox",
+        description="Isolated environment for support-agent backtests.",
     )
     verify_request_count(test_id, "POST", "/v1/environments", None, 1)
 

@@ -156,6 +156,7 @@ Requires scope events:write.
 ```python
 from chroniclelabs import Chronicle
 from chroniclelabs.environment import ChronicleEnvironment
+import datetime
 
 client = Chronicle(
     token="<token>",
@@ -163,9 +164,14 @@ client = Chronicle(
 )
 
 client.events.ingest_event(
-    source="my-agent",
+    source="support-agent",
     topic="conversations",
     event_type="message.sent",
+    entities={
+        "user": "usr_123"
+    },
+    payload={"role": "assistant", "content": "Your refund is approved."},
+    timestamp=datetime.datetime.fromisoformat("2026-09-24T14:30:00+00:00"),
 )
 
 ```
@@ -2487,7 +2493,7 @@ client.datasets.create_dataset(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -2592,7 +2598,7 @@ client.datasets.create_dataset_with_trace(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -3019,7 +3025,7 @@ client.datasets.add_trace_to_dataset(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -3315,7 +3321,7 @@ client.datasets.refresh_dataset_trace(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -3609,7 +3615,7 @@ client.datasets.create_dataset_task(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -4080,7 +4086,7 @@ client.datasets.refresh_dataset_task(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -4224,7 +4230,7 @@ client.datasets.create_dataset_cluster(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -4570,7 +4576,7 @@ client.datasets.create_dataset_saved_view(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -4920,7 +4926,7 @@ client.datasets.publish_dataset_version(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -5163,8 +5169,9 @@ client = Chronicle(
 )
 
 client.environments.create_environment(
-    slug="slug",
-    label="label",
+    slug="support-sandbox",
+    label="Support sandbox",
+    description="Isolated environment for support-agent backtests.",
 )
 
 ```
@@ -5684,7 +5691,15 @@ client.backtests.list_backtest_jobs()
 <dl>
 <dd>
 
-**offset:** `typing.Optional[int]` 
+**cursor:** `typing.Optional[str]` — Opaque position returned as `next_cursor` by the preceding page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offset:** `typing.Optional[int]` — Deprecated compatibility input. Pass the opaque `cursor` instead.
     
 </dd>
 </dl>
@@ -5814,7 +5829,7 @@ client.backtests.create_backtest_job(
 <dl>
 <dd>
 
-**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation.
+**idempotency_key:** `typing.Optional[str]` — Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
     
 </dd>
 </dl>
@@ -5972,7 +5987,15 @@ client.backtests.list_backtest_job_trials(
 <dl>
 <dd>
 
-**offset:** `typing.Optional[int]` 
+**cursor:** `typing.Optional[str]` — Opaque position returned as `next_cursor` by the preceding page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offset:** `typing.Optional[int]` — Deprecated compatibility input. Pass the opaque `cursor` instead.
     
 </dd>
 </dl>

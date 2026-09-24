@@ -268,7 +268,6 @@ if typing.TYPE_CHECKING:
     from .environment_version_response import EnvironmentVersionResponse
     from .environment_version_status import EnvironmentVersionStatus
     from .error_response import ErrorResponse
-    from .error_response_code import ErrorResponseCode
     from .event import Event
     from .event_list_response import EventListResponse
     from .event_page import EventPage
@@ -569,7 +568,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EnvironmentVersionResponse": ".environment_version_response",
     "EnvironmentVersionStatus": ".environment_version_status",
     "ErrorResponse": ".error_response",
-    "ErrorResponseCode": ".error_response_code",
     "Event": ".event",
     "EventListResponse": ".event_list_response",
     "EventPage": ".event_page",
@@ -882,7 +880,6 @@ __all__ = [
     "EnvironmentVersionResponse",
     "EnvironmentVersionStatus",
     "ErrorResponse",
-    "ErrorResponseCode",
     "Event",
     "EventListResponse",
     "EventPage",

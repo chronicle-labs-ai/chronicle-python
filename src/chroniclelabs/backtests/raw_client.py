@@ -106,6 +106,7 @@ class RawBacktestsClient:
         mode: typing.Optional[str] = None,
         status: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListBacktestJobsResponse]:
@@ -118,7 +119,11 @@ class RawBacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -135,6 +140,7 @@ class RawBacktestsClient:
                 "mode": mode,
                 "status": status,
                 "limit": limit,
+                "cursor": cursor,
                 "offset": offset,
             },
             request_options=request_options,
@@ -201,7 +207,7 @@ class RawBacktestsClient:
         recipe : CreateBacktestJobRequestRecipe
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         cases : typing.Optional[typing.Sequence[CreateBacktestJobRequestCasesItem]]
 
@@ -370,6 +376,7 @@ class RawBacktestsClient:
         job_id: str,
         *,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListBacktestJobTrialsResponse]:
@@ -380,7 +387,11 @@ class RawBacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -395,6 +406,7 @@ class RawBacktestsClient:
             method="GET",
             params={
                 "limit": limit,
+                "cursor": cursor,
                 "offset": offset,
             },
             request_options=request_options,
@@ -764,6 +776,7 @@ class AsyncRawBacktestsClient:
         mode: typing.Optional[str] = None,
         status: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListBacktestJobsResponse]:
@@ -776,7 +789,11 @@ class AsyncRawBacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -793,6 +810,7 @@ class AsyncRawBacktestsClient:
                 "mode": mode,
                 "status": status,
                 "limit": limit,
+                "cursor": cursor,
                 "offset": offset,
             },
             request_options=request_options,
@@ -859,7 +877,7 @@ class AsyncRawBacktestsClient:
         recipe : CreateBacktestJobRequestRecipe
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         cases : typing.Optional[typing.Sequence[CreateBacktestJobRequestCasesItem]]
 
@@ -1028,6 +1046,7 @@ class AsyncRawBacktestsClient:
         job_id: str,
         *,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListBacktestJobTrialsResponse]:
@@ -1038,7 +1057,11 @@ class AsyncRawBacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1053,6 +1076,7 @@ class AsyncRawBacktestsClient:
             method="GET",
             params={
                 "limit": limit,
+                "cursor": cursor,
                 "offset": offset,
             },
             request_options=request_options,

@@ -89,8 +89,9 @@ class EnvironmentsClient:
             token="YOUR_TOKEN",
         )
         client.environments.create_environment(
-            slug="slug",
-            label="label",
+            slug="support-sandbox",
+            label="Support sandbox",
+            description="Isolated environment for support-agent backtests.",
         )
         """
         _response = self._raw_client.create_environment(
@@ -384,8 +385,9 @@ class AsyncEnvironmentsClient:
 
         async def main() -> None:
             await client.environments.create_environment(
-                slug="slug",
-                label="label",
+                slug="support-sandbox",
+                label="Support sandbox",
+                description="Isolated environment for support-agent backtests.",
             )
 
 

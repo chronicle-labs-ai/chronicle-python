@@ -67,6 +67,7 @@ class BacktestsClient:
         mode: typing.Optional[str] = None,
         status: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListBacktestJobsResponse:
@@ -79,7 +80,11 @@ class BacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -99,7 +104,7 @@ class BacktestsClient:
         client.backtests.list_backtest_jobs()
         """
         _response = self._raw_client.list_backtest_jobs(
-            mode=mode, status=status, limit=limit, offset=offset, request_options=request_options
+            mode=mode, status=status, limit=limit, cursor=cursor, offset=offset, request_options=request_options
         )
         return _response.data
 
@@ -124,7 +129,7 @@ class BacktestsClient:
         recipe : CreateBacktestJobRequestRecipe
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         cases : typing.Optional[typing.Sequence[CreateBacktestJobRequestCasesItem]]
 
@@ -245,6 +250,7 @@ class BacktestsClient:
         job_id: str,
         *,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListBacktestJobTrialsResponse:
@@ -255,7 +261,11 @@ class BacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -277,7 +287,7 @@ class BacktestsClient:
         )
         """
         _response = self._raw_client.list_backtest_job_trials(
-            job_id, limit=limit, offset=offset, request_options=request_options
+            job_id, limit=limit, cursor=cursor, offset=offset, request_options=request_options
         )
         return _response.data
 
@@ -432,6 +442,7 @@ class AsyncBacktestsClient:
         mode: typing.Optional[str] = None,
         status: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListBacktestJobsResponse:
@@ -444,7 +455,11 @@ class AsyncBacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -472,7 +487,7 @@ class AsyncBacktestsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.list_backtest_jobs(
-            mode=mode, status=status, limit=limit, offset=offset, request_options=request_options
+            mode=mode, status=status, limit=limit, cursor=cursor, offset=offset, request_options=request_options
         )
         return _response.data
 
@@ -497,7 +512,7 @@ class AsyncBacktestsClient:
         recipe : CreateBacktestJobRequestRecipe
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         cases : typing.Optional[typing.Sequence[CreateBacktestJobRequestCasesItem]]
 
@@ -634,6 +649,7 @@ class AsyncBacktestsClient:
         job_id: str,
         *,
         limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListBacktestJobTrialsResponse:
@@ -644,7 +660,11 @@ class AsyncBacktestsClient:
 
         limit : typing.Optional[int]
 
+        cursor : typing.Optional[str]
+            Opaque position returned as `next_cursor` by the preceding page.
+
         offset : typing.Optional[int]
+            Deprecated compatibility input. Pass the opaque `cursor` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -674,7 +694,7 @@ class AsyncBacktestsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.list_backtest_job_trials(
-            job_id, limit=limit, offset=offset, request_options=request_options
+            job_id, limit=limit, cursor=cursor, offset=offset, request_options=request_options
         )
         return _response.data
 

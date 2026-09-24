@@ -1,3 +1,5 @@
+import datetime
+
 from .conftest import get_client, verify_request_count
 
 from chroniclelabs import IngestRequest
@@ -16,9 +18,12 @@ def test_events_ingest_event() -> None:
     test_id = "events.ingest_event.0"
     client = get_client(test_id)
     client.events.ingest_event(
-        source="my-agent",
+        source="support-agent",
         topic="conversations",
         event_type="message.sent",
+        entities={"user": "usr_123"},
+        payload={"role": "assistant", "content": "Your refund is approved."},
+        timestamp=datetime.datetime.fromisoformat("2026-09-24T14:30:00+00:00"),
     )
     verify_request_count(test_id, "POST", "/v1/events", None, 1)
 
