@@ -135,15 +135,22 @@ class EventsClient:
 
         Examples
         --------
+        import datetime
+
         from chroniclelabs import Chronicle
 
         client = Chronicle(
             token="YOUR_TOKEN",
         )
         client.events.ingest_event(
-            source="my-agent",
+            source="support-agent",
             topic="conversations",
             event_type="message.sent",
+            entities={"user": "usr_123"},
+            payload={"role": "assistant", "content": "Your refund is approved."},
+            timestamp=datetime.datetime.fromisoformat(
+                "2026-09-24 14:30:00+00:00",
+            ),
         )
         """
         _response = self._raw_client.ingest_event(
@@ -390,6 +397,7 @@ class AsyncEventsClient:
         Examples
         --------
         import asyncio
+        import datetime
 
         from chroniclelabs import AsyncChronicle
 
@@ -400,9 +408,14 @@ class AsyncEventsClient:
 
         async def main() -> None:
             await client.events.ingest_event(
-                source="my-agent",
+                source="support-agent",
                 topic="conversations",
                 event_type="message.sent",
+                entities={"user": "usr_123"},
+                payload={"role": "assistant", "content": "Your refund is approved."},
+                timestamp=datetime.datetime.fromisoformat(
+                    "2026-09-24 14:30:00+00:00",
+                ),
             )
 
 

@@ -4,7 +4,6 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .error_response_code import ErrorResponseCode
 
 
 class ErrorResponse(UniversalBaseModel):
@@ -32,7 +31,7 @@ class ErrorResponse(UniversalBaseModel):
     Explanation specific to this occurrence
     """
 
-    code: ErrorResponseCode = pydantic.Field()
+    code: str = pydantic.Field()
     """
     Stable machine-readable slug to branch on
     """

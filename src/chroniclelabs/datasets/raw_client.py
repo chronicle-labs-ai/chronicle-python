@@ -152,7 +152,7 @@ class RawDatasetsClient:
         name : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 
@@ -242,7 +242,7 @@ class RawDatasetsClient:
         trace : CreateTaskSuiteWithTraceRequestTrace
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -707,7 +707,7 @@ class RawDatasetsClient:
         trace_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         event_ids : typing.Optional[typing.Sequence[str]]
             Accepted for compatibility but never trusted as the authoritative capture. The service re-reads the canonical store by subject.
@@ -980,7 +980,7 @@ class RawDatasetsClient:
         membership_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         refresh_membership_request_idempotency_key : typing.Optional[str]
 
@@ -1301,7 +1301,7 @@ class RawDatasetsClient:
         request : CreateTaskRequest
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1791,7 +1791,7 @@ class RawDatasetsClient:
         membership_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         refresh_membership_request_idempotency_key : typing.Optional[str]
 
@@ -1952,7 +1952,7 @@ class RawDatasetsClient:
         label : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 
@@ -2282,7 +2282,7 @@ class RawDatasetsClient:
         state : CreateSavedViewRequestState
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 
@@ -2622,7 +2622,7 @@ class RawDatasetsClient:
         dataset_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 
@@ -2933,7 +2933,7 @@ class AsyncRawDatasetsClient:
         name : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 
@@ -3023,7 +3023,7 @@ class AsyncRawDatasetsClient:
         trace : CreateTaskSuiteWithTraceRequestTrace
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3488,7 +3488,7 @@ class AsyncRawDatasetsClient:
         trace_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         event_ids : typing.Optional[typing.Sequence[str]]
             Accepted for compatibility but never trusted as the authoritative capture. The service re-reads the canonical store by subject.
@@ -3761,7 +3761,7 @@ class AsyncRawDatasetsClient:
         membership_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         refresh_membership_request_idempotency_key : typing.Optional[str]
 
@@ -4082,7 +4082,7 @@ class AsyncRawDatasetsClient:
         request : CreateTaskRequest
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4572,7 +4572,7 @@ class AsyncRawDatasetsClient:
         membership_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         refresh_membership_request_idempotency_key : typing.Optional[str]
 
@@ -4733,7 +4733,7 @@ class AsyncRawDatasetsClient:
         label : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 
@@ -5063,7 +5063,7 @@ class AsyncRawDatasetsClient:
         state : CreateSavedViewRequestState
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 
@@ -5403,7 +5403,7 @@ class AsyncRawDatasetsClient:
         dataset_id : str
 
         idempotency_key : typing.Optional[str]
-            Optional caller-generated key for safely retrying a mutation.
+            Optional caller-generated key for safely retrying a mutation after an ambiguous network failure. Keys are scoped to the authenticated tenant and operation. Reusing a key with the same payload returns the original successful result; reusing it with a different payload returns 409.
 
         description : typing.Optional[str]
 

@@ -37,15 +37,21 @@ Instantiate and use the client with the following:
 
 ```python
 from chroniclelabs import Chronicle
+import datetime
 
 client = Chronicle(
     token="<token>",
 )
 
 client.events.ingest_event(
-    source="my-agent",
+    source="support-agent",
     topic="conversations",
     event_type="message.sent",
+    entities={
+        "user": "usr_123"
+    },
+    payload={"role": "assistant", "content": "Your refund is approved."},
+    timestamp=datetime.datetime.fromisoformat("2026-09-24T14:30:00+00:00"),
 )
 ```
 
@@ -68,6 +74,7 @@ The SDK also exports an `async` client so that you can make non-blocking calls t
 
 ```python
 import asyncio
+import datetime
 
 from chroniclelabs import AsyncChronicle
 
@@ -78,9 +85,14 @@ client = AsyncChronicle(
 
 async def main() -> None:
     await client.events.ingest_event(
-        source="my-agent",
+        source="support-agent",
         topic="conversations",
         event_type="message.sent",
+        entities={
+            "user": "usr_123"
+        },
+        payload={"role": "assistant", "content": "Your refund is approved."},
+        timestamp=datetime.datetime.fromisoformat("2026-09-24T14:30:00+00:00"),
     )
 
 

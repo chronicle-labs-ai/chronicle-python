@@ -7,9 +7,9 @@
     "client_class_name": "Chronicle",
     "enable_wire_tests": true
   },
-  "originGitCommit": "e59147a4fc924257229324e2f45a802d064b115b",
+  "originGitCommit": "70a6a777674637878261d9e3175ca40626249123",
   "originGitCommitIsDirty": false,
   "invokedBy": "manual",
-  "requestedVersion": "0.0.10",
-  "sdkVersion": "0.0.10"
+  "requestedVersion": "0.0.11",
+  "sdkVersion": "0.0.11"
 }
